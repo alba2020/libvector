@@ -1,5 +1,7 @@
 package util
 
+import "math"
+
 // Equal tells whether a and b contain the same elements.
 // A nil argument is equivalent to an empty slice.
 func Equals(a, b []float64) bool {
@@ -28,4 +30,8 @@ func Map(xs []float64, f func(float64) float64) []float64 {
 		res[i] = f(x)
 	}
 	return res
+}
+
+func ToDegrees(radians float64) float64 {
+	return 180 * radians / math.Pi
 }

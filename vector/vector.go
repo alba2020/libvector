@@ -2,8 +2,9 @@ package vector
 
 import (
 	"fmt"
-	"libvector/util"
 	"math"
+
+	"github.com/alba2020/libvector/util"
 )
 
 type Vector struct {
@@ -84,4 +85,19 @@ func (v Vector) Norm() Vector {
 		panic("division by zero")
 	}
 	return v.Mul(1 / mod)
+}
+
+// scalar product - a*b*cos(theta)
+func (v Vector) Dot(other Vector) float64 {
+	var sum float64
+	for i, x := range v.coordinates {
+		sum += x * other.coordinates[i]
+	}
+	return sum
+}
+
+// angle in radians
+func (v Vector) Angle(other Vector) float64 {
+	cos := v.Dot(other) / (v.Mod() * other.Mod())
+	return math.Acos(cos)
 }
